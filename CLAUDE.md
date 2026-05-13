@@ -39,6 +39,54 @@ Design tokens live in [frontend/src/styles/_variables.scss](frontend/src/styles/
 
 **Convention:** prefer shared tokens over hardcoded values in component styles. If a new value is needed in more than one place, add it to `_variables.scss` instead of duplicating. Add new shared partials (e.g., `_mixins.scss`, `_typography.scss`) to `src/styles/` and `@use` them the same way. New components scaffolded with `ng generate component` default to `.scss` (configured in `angular.json` schematics).
 
+## API documentation (Swagger / OpenAPI)
+
+The backend exposes auto-generated OpenAPI 3 docs via springdoc:
+- **Swagger UI** (browse + try endpoints in the browser): http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON** (raw spec): http://localhost:8080/v3/api-docs
+
+### Required annotations on every endpoint
+Every new `@RestController` and every endpoint method MUST include OpenAPI annotations. `/verify` blocks merges that introduce undocumented endpoints.
+
+- **Controller class**: `@Tag(name = "...", description = "...")` — groups endpoints in the UI.
+- **Each endpoint method**:
+  - `@Operation(summary = "...", description = "...")`.
+  - `@ApiResponse(responseCode = "200", description = "...")` (or `@ApiResponses({...})` when multiple status codes are possible). Document the success case AND every error case the endpoint can return.
+  - `@Parameter(description = "...", example = "...")` on each `@RequestParam` / `@PathVariable`, with an **example value** so the UI's "Try it out" form is pre-filled and one-click executable.
+- **DTOs** (request/response records and classes): `@Schema(description = "...", example = "...")` on each field. Same goal — pre-fill the UI.
+
+### Template
+
+```java
+@RestController
+@RequestMapping("/api/things")
+@Tag(name = "Things", description = "Manage things")
+public class ThingController {
+
+    @Operation(summary = "List all things")
+    @ApiResponse(responseCode = "200", description = "List returned")
+    @GetMapping
+    public List<ThingResponse> list() { ... }
+
+    @Operation(summary = "Create a thing")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Created"),
+        @ApiResponse(responseCode = "400", description = "Invalid input")
+    })
+    @PostMapping
+    public ResponseEntity<ThingResponse> create(@RequestBody CreateThingRequest req) { ... }
+}
+
+public record CreateThingRequest(
+    @Schema(description = "Thing name", example = "my first thing") String name) {}
+
+public record ThingResponse(
+    @Schema(example = "42") Long id,
+    @Schema(example = "my first thing") String name) {}
+```
+
+Example values in `@Schema` and `@Parameter` are what populate Swagger UI's "Try it out" form — that's how each endpoint stays one-click testable from the browser.
+
 ## Database
 
 Postgres 16, accessed via Spring Data JPA. Local Postgres runs via `docker compose up -d` from the repo root.

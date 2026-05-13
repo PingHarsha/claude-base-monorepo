@@ -76,6 +76,8 @@ Tests use Testcontainers to spin up Postgres on the fly, so `docker compose up` 
 | Method | Path | Description |
 |---|---|---|
 | GET | `/actuator/health` | Spring Boot Actuator health endpoint. |
+| GET | `/swagger-ui.html` | Swagger UI: browse + try every endpoint from the browser. |
+| GET | `/v3/api-docs` | Raw OpenAPI 3 spec (JSON). |
 
 _No application endpoints yet — this scaffold is in workflow-setup phase._
 

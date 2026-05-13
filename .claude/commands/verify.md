@@ -58,6 +58,15 @@ Review the target diff (both stacks) for:
 
 Substantive findings → stop and surface them, classified by severity (block / fix-before-ship / nit). Don't just note them — make the user decide.
 
+### 5a. API documentation (backend, if controllers changed)
+For every new or modified `@RestController` / `@*Mapping` method in the backend diff:
+- Confirm `@Tag(name=..., description=...)` is present on the controller class.
+- Confirm `@Operation(summary=..., description=...)` is present on the method.
+- Confirm at least one `@ApiResponse` is documented (success path + each error path the method can return).
+- Confirm every `@RequestParam`, `@PathVariable`, and `@RequestBody` has an example — `@Parameter(example=...)` for params, `@Schema(example=...)` on DTO fields for bodies. This pre-fills Swagger UI's "Try it out" form so endpoints are one-click testable in the browser.
+
+**Missing API annotations on a new endpoint = block, not nit.** See CLAUDE.md "API documentation" for the full template.
+
 ## 6. Commit added tests / formatting fixes (branch mode only)
 - **Working-tree mode**: leave added tests and auto-applied formatting unstaged for `/ship`.
 - **Branch mode**: commit added tests and any auto-applied formatting on the current branch (`test:`, `chore:`, or `style:` prefix as appropriate). In a worktree-isolated background run, "the current branch" is the agent's worktree branch — that's correct; the user will merge it back.

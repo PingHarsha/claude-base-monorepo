@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Phase 4 (final) of multi-stack expansion: workflow commands and CI now handle both stacks. `/verify` and `/quickfix` detect which stacks the diff touches and run the right gates (backend: `mvn` test/lint/coverage; frontend: `ng test`/`ng lint`/Prettier). CI runs backend and frontend as parallel jobs in `pr-checks.yml`. The expansion is complete — next focus is building actual product features.
+Final scaffold piece: OpenAPI/Swagger UI for the backend via springdoc. Annotation convention captured in CLAUDE.md; `/verify` blocks merges that add undocumented endpoints. After this lands, the next focus is real product features.
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._
