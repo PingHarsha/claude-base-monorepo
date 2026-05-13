@@ -1,0 +1,65 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "backend: spring-boot:run",
+      "type": "shell",
+      "command": "mvn",
+      "args": ["spring-boot:run"],
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "spring-boot",
+        "pattern": {
+          "regexp": "^\\s*at\\s+(.+)\\((.+):(\\d+)\\)$",
+          "file": 2,
+          "line": 3,
+          "message": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting .*Application",
+          "endsPattern": "Started .*Application in .* seconds"
+        }
+      },
+      "presentation": {
+        "panel": "dedicated",
+        "group": "dev-servers",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "frontend: ng serve",
+      "type": "npm",
+      "script": "start",
+      "path": "frontend",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "angular",
+        "pattern": {
+          "regexp": "^\\s*Error:\\s+(.*):(\\d+):(\\d+)\\s+-\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "(Building|Compiling|Application bundle generation in progress)",
+          "endsPattern": "(Application bundle generation complete|Compiled successfully|Watch mode enabled. Watching for file changes)"
+        }
+      },
+      "presentation": {
+        "panel": "dedicated",
+        "group": "dev-servers",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "dev: backend + frontend",
+      "dependsOn": ["backend: spring-boot:run", "frontend: ng serve"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}
