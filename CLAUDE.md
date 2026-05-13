@@ -28,6 +28,14 @@ Integration tests live in `backend/src/test/java/com/example/deskproblem/integra
 ## Build & test (frontend, from `frontend/`)
 _Placeholder — scaffold lands in phase 3, tooling wiring in phase 4. Will use `npm`/`ng` commands (Prettier for formatting, `ng lint` for quality, `ng test` for unit tests, `ng build` for production builds)._
 
+## Database
+
+Postgres 16, accessed via Spring Data JPA. Local Postgres runs via `docker compose up -d` from the repo root.
+
+- **Connection config**: `backend/src/main/resources/application.properties` — env vars (`DB_URL`, `DB_USER`, `DB_PASSWORD`) with defaults matching `docker-compose.yml` for zero-config local dev.
+- **Migrations**: Flyway, files at `backend/src/main/resources/db/migration/`, naming `V<#>__<description>.sql` (two underscores). Flyway runs on Spring Boot startup; Hibernate `ddl-auto=validate` makes Flyway the sole schema source.
+- **Tests**: Testcontainers via `@ServiceConnection` (see [backend/src/test/java/com/example/deskproblem/TestcontainersConfig.java](backend/src/test/java/com/example/deskproblem/TestcontainersConfig.java)). Each `mvn verify` run spins up a fresh Postgres container — Docker must be running, but `docker compose up` is not required.
+
 ## Code style
 
 Mechanical style (formatting, imports, whitespace) is enforced by Spotless. The points below cover the substance layer — they're lenses, not rules. When any of them fights with readability, **readability wins**.

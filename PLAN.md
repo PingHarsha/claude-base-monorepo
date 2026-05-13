@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Phase 1 of multi-stack expansion: restructure to a monorepo (`backend/`, `frontend/`). Phase 2 adds Postgres + Flyway; phase 3 scaffolds Angular 19; phase 4 wires the workflow commands and CI to handle both stacks symmetrically.
+Phase 2 of multi-stack expansion: Postgres + Flyway. Backend boots against a real Postgres (Docker locally, Testcontainers in tests) with Flyway-managed schema. Phase 3 scaffolds Angular 19; phase 4 wires multi-stack workflow commands and CI.
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._

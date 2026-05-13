@@ -47,6 +47,18 @@ Backend boots on `http://localhost:8080`.
 
 Frontend commands will run from `frontend/` once the Angular scaffold lands.
 
+## Local database
+
+The backend connects to Postgres. Bring it up locally with Docker:
+
+```bash
+docker compose up -d
+```
+
+This starts Postgres 16 on `localhost:5432` with database `example_desk`, user `example_desk`, password `example_desk` — matching the defaults in `backend/src/main/resources/application.properties`. Stop with `docker compose down`; reset (wipe data) with `docker compose down -v`. To point the backend at a different Postgres, set `DB_URL`, `DB_USER`, `DB_PASSWORD` env vars before starting.
+
+Tests use Testcontainers to spin up Postgres on the fly, so `docker compose up` is not required to run `mvn verify` — only the Docker daemon needs to be running.
+
 ## Endpoints
 
 | Method | Path | Description |
