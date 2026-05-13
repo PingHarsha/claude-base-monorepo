@@ -15,6 +15,7 @@ backend/                       — Spring Boot 3.4 / Java 21 / Maven application
 frontend/                      — Angular 19 application (placeholder until phase 3)
 .github/workflows/             — GitHub Actions: PR checks + integration tests on main
 .claude/                       — slash commands, hooks, project Claude Code settings
+scripts/                       — repo admin helpers (see CLAUDE.md "One-time setup")
 PLAN.md                        — source of truth: goals, decisions, open questions, changelog
 CLAUDE.md                      — development workflow + per-stack conventions
 ```
