@@ -16,11 +16,22 @@
 
 set -euo pipefail
 
+# Refuse to run outside a clone of this template — pr-checks.yml is what
+# defines the two contexts we're about to require, so its absence means the
+# script would lock `main` behind checks that will never fire.
+if [[ ! -f .github/workflows/pr-checks.yml ]]; then
+  echo "Error: .github/workflows/pr-checks.yml not found. Run this from the repo root of a claude-base-monorepo clone." >&2
+  exit 1
+fi
+
 REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
 BRANCH="main"
 
 echo "Setting required status checks on ${REPO}@${BRANCH}..."
 
+# JSON note: `strict: true` means the PR head must be up to date with base
+# before merging. Set it to false here if every develop push invalidating
+# open PRs becomes annoying.
 gh api -X PUT "/repos/${REPO}/branches/${BRANCH}/protection" \
   -H "Accept: application/vnd.github+json" \
   --input - <<'JSON'
