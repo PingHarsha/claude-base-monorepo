@@ -49,10 +49,12 @@ Frontend commands run from `frontend/`:
 
 ```bash
 cd frontend
-npm install        # first time only
-ng serve           # dev server at http://localhost:4200 (hot reload)
-ng build           # production build (output to frontend/dist/frontend/)
-ng test            # unit tests via Karma + Jasmine
+npm install                # first time only
+ng serve                   # dev server at http://localhost:4200 (hot reload)
+ng build                   # production build (output to frontend/dist/frontend/)
+ng test                    # unit tests via Karma + Jasmine
+npm run lint               # ESLint via @angular-eslint
+npm run format:check       # Prettier (auto-fix: npm run format)
 ```
 
 Frontend uses SCSS. Shared design tokens (colors, spacing, typography) live in `frontend/src/styles/_variables.scss`; components reuse them via `@use 'variables' as v;`. See [CLAUDE.md](CLAUDE.md) for the shared-styles convention.
@@ -81,4 +83,4 @@ _No application endpoints yet — this scaffold is in workflow-setup phase._
 
 This repo uses an opinionated 10-step workflow (`/plan-feature` → `/ship` → `/verify` → `/merge` → `/promote` → `/ultrareview` → `/address-review`) driven from Claude Code. See [CLAUDE.md](CLAUDE.md) for the full sequence, branch policy (main / develop / feature/*), and per-command details.
 
-Backend quality gates: Spotless (formatting), JaCoCo (80% line coverage), security review on diff. Frontend quality gates (phase 4): Prettier (formatting), `ng lint` (style + quality), `ng test` (unit tests).
+Backend quality gates: Spotless (formatting), JaCoCo (80% line coverage), security review on diff. Frontend quality gates: Prettier (formatting), `ng lint` / ESLint (style + quality), `ng test` (unit tests). Both stacks run in parallel via GitHub Actions on every PR to `develop` or `main`.

@@ -29,9 +29,10 @@ Integration tests live in `backend/src/test/java/com/example/deskproblem/integra
 Angular 19, standalone components, no router yet, **SCSS** styling. First-time setup: `npm install`.
 
 - Dev server: `ng serve` (http://localhost:4200, hot reload)
-- Unit tests: `ng test` (Karma + Jasmine; one-shot: `ng test --watch=false --browsers=ChromeHeadless`)
+- Unit tests: `ng test` (Karma + Jasmine; one-shot: `npx ng test --watch=false --browsers=ChromeHeadless`)
 - Production build: `ng build` (output at `frontend/dist/frontend/`)
-- Lint (phase 4): Prettier for formatting, `ng lint` (ESLint via `@angular-eslint`) for quality — to be added.
+- Lint: `npm run lint` (ESLint via `@angular-eslint`); auto-fix: `npx ng lint --fix`
+- Format check: `npm run format:check` (Prettier); auto-fix: `npm run format`
 
 ### Shared styles (SCSS)
 Design tokens live in [frontend/src/styles/_variables.scss](frontend/src/styles/_variables.scss) (colors, spacing, typography). Components reuse them via `@use 'variables' as v;` and then `v.$color-text`, `v.$space-md`, etc. The `src/styles/` directory is wired into Angular's `stylePreprocessorOptions.includePaths` in `frontend/angular.json`, so partial paths resolve cleanly from any component depth.

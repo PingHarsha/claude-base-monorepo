@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Phase 3 of multi-stack expansion: Angular 19 scaffold in `frontend/`. Standalone components, no router, SCSS with a shared design-tokens partial (`src/styles/_variables.scss`) wired into `stylePreprocessorOptions.includePaths` so components reuse tokens via `@use 'variables' as v;`. Hello-world main page. Phase 4 wires multi-stack workflow commands and CI (Prettier + ng lint for frontend).
+Phase 4 (final) of multi-stack expansion: workflow commands and CI now handle both stacks. `/verify` and `/quickfix` detect which stacks the diff touches and run the right gates (backend: `mvn` test/lint/coverage; frontend: `ng test`/`ng lint`/Prettier). CI runs backend and frontend as parallel jobs in `pr-checks.yml`. The expansion is complete — next focus is building actual product features.
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._
