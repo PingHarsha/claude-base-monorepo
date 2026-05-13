@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Establishing the development workflow tooling (slash commands, lint, coverage, integration test profile) before building product features.
+Adding GitHub Actions CI to enforce the workflow at the platform level: PR checks (Spotless + `mvn verify` for tests/coverage) on PRs to `develop` or `main`, and integration tests on push to `main`.
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._

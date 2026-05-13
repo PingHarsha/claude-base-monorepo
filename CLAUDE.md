@@ -75,7 +75,7 @@ Because `/verify` supports branch mode (clean tree on a feature branch → diffs
 ## One-time setup
 - **GitHub branch protection on `main`** — enforces the no-direct-commits rule at the platform level. In GitHub: **Settings → Branches → Add branch protection rule** for branch name pattern `main`. Recommended settings:
   - Require a pull request before merging (set required approvals to 0 if you're solo, otherwise 1+)
-  - Require status checks to pass before merging (add CI workflow names here once CI is wired up)
+  - Require status checks to pass before merging — add `PR checks / checks` (from [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml)) once it's run at least once. `Integration tests` (from [.github/workflows/integration-tests.yml](.github/workflows/integration-tests.yml)) fires on push to `main`, so it's not a PR gate but is visible per-commit on the main timeline.
   - Require linear history (forces fast-forward / rebase; prevents merge commits)
   - Do not allow administrators to bypass the above
 - **`gh` CLI** — install via `brew install gh && gh auth login`. Required for `/promote` and `/address-review`.
