@@ -1,15 +1,17 @@
-# example-desk-problem
+# claude-base-monorepo
 
-A monorepo sandbox for exercising a structured development workflow with Claude Code. Spring Boot 3.4 backend (Java 21, Maven); Angular 19 frontend (coming in phase 3).
+A monorepo template for Claude Code-driven development. Spring Boot 3.4 backend (Java 21, Maven) with Postgres + Flyway + Swagger; Angular 19 frontend with ESLint + Prettier + SCSS shared tokens. The opinionated 10-step workflow, slash commands, hooks, and CI are all set up.
+
+**Using this as a template for a new project?** See the "Renaming for a new project" section in [CLAUDE.md](CLAUDE.md).
 
 ## Repository structure
 
 ```
 backend/                       — Spring Boot 3.4 / Java 21 / Maven application
   pom.xml
-  src/main/java/com/example/deskproblem/
-  src/test/java/com/example/deskproblem/             — unit tests (MockMvc)
-  src/test/java/com/example/deskproblem/integration/ — integration tests (@Tag("integration"), real HTTP)
+  src/main/java/com/example/claudebasemonorepo/
+  src/test/java/com/example/claudebasemonorepo/             — unit tests (MockMvc)
+  src/test/java/com/example/claudebasemonorepo/integration/ — integration tests (@Tag("integration"), real HTTP)
 frontend/                      — Angular 19 application (placeholder until phase 3)
 .github/workflows/             — GitHub Actions: PR checks + integration tests on main
 .claude/                       — slash commands, hooks, project Claude Code settings
@@ -67,7 +69,7 @@ The backend connects to Postgres. Bring it up locally with Docker:
 docker compose up -d
 ```
 
-This starts Postgres 16 on `localhost:5432` with database `example_desk`, user `example_desk`, password `example_desk` — matching the defaults in `backend/src/main/resources/application.properties`. Stop with `docker compose down`; reset (wipe data) with `docker compose down -v`. To point the backend at a different Postgres, set `DB_URL`, `DB_USER`, `DB_PASSWORD` env vars before starting.
+This starts Postgres 16 on `localhost:5432` with database `claude_base_monorepo`, user `claude_base_monorepo`, password `claude_base_monorepo` — matching the defaults in `backend/src/main/resources/application.properties`. Stop with `docker compose down`; reset (wipe data) with `docker compose down -v`. To point the backend at a different Postgres, set `DB_URL`, `DB_USER`, `DB_PASSWORD` env vars before starting.
 
 Tests use Testcontainers to spin up Postgres on the fly, so `docker compose up` is not required to run `mvn verify` — only the Docker daemon needs to be running.
 

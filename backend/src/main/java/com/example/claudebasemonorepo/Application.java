@@ -1,4 +1,4 @@
-package com.example.deskproblem;
+package com.example.claudebasemonorepo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

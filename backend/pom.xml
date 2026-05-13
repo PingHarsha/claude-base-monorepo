@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>example-desk-problem</artifactId>
+    <artifactId>claude-base-monorepo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>example-desk-problem</name>
+    <name>claude-base-monorepo</name>
     <description>Basic Spring Boot application</description>
 
     <properties>

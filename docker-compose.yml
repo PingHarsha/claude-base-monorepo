@@ -1,17 +1,17 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: example-desk-postgres
+    container_name: claude-base-monorepo-postgres
     environment:
-      POSTGRES_DB: example_desk
-      POSTGRES_USER: example_desk
-      POSTGRES_PASSWORD: example_desk
+      POSTGRES_DB: claude_base_monorepo
+      POSTGRES_USER: claude_base_monorepo
+      POSTGRES_PASSWORD: claude_base_monorepo
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U example_desk -d example_desk"]
+      test: ["CMD-SHELL", "pg_isready -U claude_base_monorepo -d claude_base_monorepo"]
       interval: 5s
       timeout: 5s
       retries: 5

@@ -5,8 +5,8 @@
       "type": "java",
       "name": "Backend: Spring Boot (debug)",
       "request": "launch",
-      "mainClass": "com.example.deskproblem.Application",
-      "projectName": "example-desk-problem",
+      "mainClass": "com.example.claudebasemonorepo.Application",
+      "projectName": "claude-base-monorepo",
       "cwd": "${workspaceFolder}/backend",
       "console": "internalConsole"
     },

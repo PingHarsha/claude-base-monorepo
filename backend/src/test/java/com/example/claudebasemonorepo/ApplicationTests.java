@@ -1,4 +1,4 @@
-package com.example.deskproblem;
+package com.example.claudebasemonorepo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
