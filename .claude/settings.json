@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/test-on-java-changes.sh",
+            "timeout": 180,
+            "statusMessage": "Running mvn test on Java changes..."
+          }
+        ]
+      }
+    ]
+  }
+}
