@@ -145,7 +145,7 @@ Mechanical style (formatting, imports, whitespace) is enforced by Spotless. The 
 5. Run **`/merge`** on the feature branch. It runs the integration test suite (`mvn test -P integration-tests`), shows results + the diff against develop, and **pauses for explicit `approve`**. On approval, it merges to `develop`, deletes the feature branch, and pushes `develop` to origin (so GitHub Actions can pick it up). (For ad-hoc integration runs not tied to a merge, `/integration-verify` runs the same test suite without the merge step.)
 6. Bugs found later → new branch off `develop`, fix, `/verify`, `/merge`. Same loop.
 7. When `develop` is ready to release, run **`/promote`**. It (a) reviews `git diff main..HEAD` for README-worthy changes and proposes a README update on `develop` if anything is stale, (b) creates a `develop → main` PR with title and body derived from `git log main..develop` and the PLAN.md changelog. Requires `gh` CLI installed and authenticated. Consider running `/integration-verify` on `develop` first as a final smoke check.
-8. Run **`/ultrareview <PR#>`** for a fresh-context multi-agent PR review (user-triggered; Claude cannot launch this directly). Findings post as PR comments.
+8. Run **`/review <PR#>`** for an in-conversation review that posts to the PR as a review comment for transparency. (`/ultrareview` is also available — it runs a fresh-context multi-agent cloud review and posts findings as PR comments — but it's billed, so `/review` is the default.)
 9. User reviews the PR + the review's findings. To work through the findings systematically, invoke **`/address-review <PR#>`** — it fetches comments via `gh`, lists them numbered, lets you pick which to act on, branches off `develop`, and applies the accepted changes as uncommitted edits. From there you run `/verify` → `/ship` → `/merge` per the bug-fix loop (step 6). After merge to `develop`, the existing `develop → main` PR picks up the new commits automatically.
 10. User merges the PR into `main` in the GitHub UI.
 
@@ -158,7 +158,8 @@ Mechanical style (formatting, imports, whitespace) is enforced by Spotless. The 
 | 5 (integration + merge) | `/merge` | [.claude/commands/merge.md](.claude/commands/merge.md) |
 | 5/7 (ad-hoc integration run) | `/integration-verify` | [.claude/commands/integration-verify.md](.claude/commands/integration-verify.md) |
 | 7 (PR develop→main) | `/promote` | [.claude/commands/promote.md](.claude/commands/promote.md) |
-| 8 (fresh-context PR review) | `/ultrareview <PR#>` | built-in Claude Code skill (user-triggered) |
+| 8 (PR review, default) | `/review <PR#>` | [.claude/commands/review.md](.claude/commands/review.md) |
+| 8 (PR review, escalation) | `/ultrareview <PR#>` | built-in Claude Code skill (billed; user-triggered) |
 | 9 (apply PR review fixes) | `/address-review <PR#>` | [.claude/commands/address-review.md](.claude/commands/address-review.md) |
 | — (trivial changes only) | `/quickfix` | [.claude/commands/quickfix.md](.claude/commands/quickfix.md) |
 
