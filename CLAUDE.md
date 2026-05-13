@@ -178,7 +178,7 @@ Because `/verify` supports branch mode (clean tree on a feature branch → diffs
   - Require linear history (forces fast-forward / rebase; prevents merge commits)
   - Do not allow administrators to bypass the above
 
-  After the first PR has triggered the workflow, run [scripts/enable-required-pr-checks.sh](scripts/enable-required-pr-checks.sh) to set the required status checks via the GitHub API (the rest of the protection above can be applied via the UI or matched in the same script body).
+  After the first PR has triggered the workflow, run [scripts/enable-required-pr-checks.sh](scripts/enable-required-pr-checks.sh). The script PUTs the full baseline (PR review + linear history + admin enforcement + no-force/delete + the two required contexts) in a single API call, so it can stand in for the UI step entirely — but only after a workflow run has registered the contexts with GitHub.
 - **`gh` CLI** — install via `brew install gh && gh auth login`. Required for `/promote` and `/address-review`.
 
 ## Automated feedback
