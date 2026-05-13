@@ -38,11 +38,13 @@ End with: **"Reply with `approve` to merge this branch into `develop`, or anythi
 
 Wait for the user's explicit response. Only proceed on a clear `approve`. Anything else cancels the merge — leave the branch as-is.
 
-## 5. Merge
+## 5. Merge and push
 On approval:
 - `git checkout develop`
 - `git merge <feature-branch>` (fast-forward when possible, merge commit otherwise)
 - `git branch -d <feature-branch>`
-- Show the new `develop` HEAD: `git log --oneline -3`
+- `git push origin develop` to share the new state and trigger any CI configured on push events.
 
-Do not push. The user pushes `develop` when they're ready (typically just before `/promote`).
+If the push fails (no remote, auth issue, divergence with origin/develop), surface the error but **do not roll back the local merge** — it's already approved. Tell the user the merge is local-only and what to do (`git push`, `git pull --rebase`, etc.).
+
+Show the final state: `git log --oneline -3` and whether the push succeeded.

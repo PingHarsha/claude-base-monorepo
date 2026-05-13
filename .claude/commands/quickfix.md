@@ -39,11 +39,14 @@ Wait for user approval (`approve` to commit, or supply an edited message).
 - `git add` the relevant files by name (not `-A`)
 - `git commit` with the agreed message
 
-## 4. Merge to develop (if on a feature branch)
+## 4. Merge to develop and push (if on a feature branch)
 Check current branch.
 
-- **On `develop` already**: commit stays here; report and exit.
-- **On a feature branch**: ask "Merge to develop and delete this branch? (yes/no)". On yes: `git checkout develop && git merge <branch> && git branch -d <branch>`.
+- **On `develop` already**: commit stays here. Push it: `git push origin develop`. If push fails, surface the error but don't roll back the commit. Report and exit.
+- **On a feature branch**: ask "Merge to develop and delete this branch? (yes/no)". On yes:
+  - `git checkout develop && git merge <branch> && git branch -d <branch>`
+  - `git push origin develop`
+  - If push fails, surface the error but don't roll back the local merge. Tell the user the merge is local-only.
 
 ## 5. Report
 - Commit SHA + message
