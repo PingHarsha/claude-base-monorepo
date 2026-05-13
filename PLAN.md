@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Phase 2 of multi-stack expansion: Postgres + Flyway. Backend boots against a real Postgres (Docker locally, Testcontainers in tests) with Flyway-managed schema. Phase 3 scaffolds Angular 19; phase 4 wires multi-stack workflow commands and CI.
+Phase 3 of multi-stack expansion: Angular 19 scaffold in `frontend/`. Standalone components, no router, SCSS with a shared design-tokens partial (`src/styles/_variables.scss`) wired into `stylePreprocessorOptions.includePaths` so components reuse tokens via `@use 'variables' as v;`. Hello-world main page. Phase 4 wires multi-stack workflow commands and CI (Prettier + ng lint for frontend).
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._

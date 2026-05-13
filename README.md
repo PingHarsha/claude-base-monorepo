@@ -45,7 +45,17 @@ mvn spring-boot:run
 
 Backend boots on `http://localhost:8080`.
 
-Frontend commands will run from `frontend/` once the Angular scaffold lands.
+Frontend commands run from `frontend/`:
+
+```bash
+cd frontend
+npm install        # first time only
+ng serve           # dev server at http://localhost:4200 (hot reload)
+ng build           # production build (output to frontend/dist/frontend/)
+ng test            # unit tests via Karma + Jasmine
+```
+
+Frontend uses SCSS. Shared design tokens (colors, spacing, typography) live in `frontend/src/styles/_variables.scss`; components reuse them via `@use 'variables' as v;`. See [CLAUDE.md](CLAUDE.md) for the shared-styles convention.
 
 ## Local database
 

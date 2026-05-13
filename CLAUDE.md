@@ -26,7 +26,17 @@ Source layout: `backend/src/main/java/com/example/deskproblem/`, tests mirror un
 Integration tests live in `backend/src/test/java/com/example/deskproblem/integration/` and are tagged `@Tag("integration")`. They use `@SpringBootTest(webEnvironment=RANDOM_PORT)` + `TestRestTemplate` to hit endpoints over real HTTP. The `integration` tag is excluded from default `mvn test` runs (Surefire `<excludedGroups>` config in pom.xml) and is the sole group included by the `integration-tests` Maven profile.
 
 ## Build & test (frontend, from `frontend/`)
-_Placeholder — scaffold lands in phase 3, tooling wiring in phase 4. Will use `npm`/`ng` commands (Prettier for formatting, `ng lint` for quality, `ng test` for unit tests, `ng build` for production builds)._
+Angular 19, standalone components, no router yet, **SCSS** styling. First-time setup: `npm install`.
+
+- Dev server: `ng serve` (http://localhost:4200, hot reload)
+- Unit tests: `ng test` (Karma + Jasmine; one-shot: `ng test --watch=false --browsers=ChromeHeadless`)
+- Production build: `ng build` (output at `frontend/dist/frontend/`)
+- Lint (phase 4): Prettier for formatting, `ng lint` (ESLint via `@angular-eslint`) for quality — to be added.
+
+### Shared styles (SCSS)
+Design tokens live in [frontend/src/styles/_variables.scss](frontend/src/styles/_variables.scss) (colors, spacing, typography). Components reuse them via `@use 'variables' as v;` and then `v.$color-text`, `v.$space-md`, etc. The `src/styles/` directory is wired into Angular's `stylePreprocessorOptions.includePaths` in `frontend/angular.json`, so partial paths resolve cleanly from any component depth.
+
+**Convention:** prefer shared tokens over hardcoded values in component styles. If a new value is needed in more than one place, add it to `_variables.scss` instead of duplicating. Add new shared partials (e.g., `_mixins.scss`, `_typography.scss`) to `src/styles/` and `@use` them the same way. New components scaffolded with `ng generate component` default to `.scss` (configured in `angular.json` schematics).
 
 ## Database
 

@@ -1,0 +1,25 @@
+// Global styles. Use shared tokens from styles/_variables.scss so component
+// styles and globals stay in sync.
+
+@use 'styles/variables' as v;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: v.$font-family-base;
+  font-size: v.$font-size-base;
+  color: v.$color-text;
+  background: v.$color-bg;
+}
+
+code {
+  font-family: v.$font-family-mono;
+  padding: v.$space-xs v.$space-sm;
+  background: v.$color-border;
+  border-radius: 4px;
+}

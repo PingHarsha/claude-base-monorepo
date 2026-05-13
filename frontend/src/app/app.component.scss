@@ -1,0 +1,17 @@
+@use 'variables' as v;
+
+main {
+  max-width: 800px;
+  margin: v.$space-xl auto;
+  padding: 0 v.$space-md;
+
+  h1 {
+    font-size: v.$font-size-h1;
+    margin: 0 0 v.$space-md;
+  }
+
+  p {
+    color: v.$color-text-muted;
+    margin: v.$space-sm 0;
+  }
+}
