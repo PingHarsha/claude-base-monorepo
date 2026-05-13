@@ -4,6 +4,8 @@ description: Verify pending or committed changes — run tests, measure coverage
 
 You are running the project's verification pipeline. This is a read-mostly safety gate — it adds tests if missing but does not push. Surface findings to the user; do not silently move on.
 
+**Backend path.** All `mvn` invocations below run from `backend/`. Prefix with `cd backend && ` or change directory once at the start of the run. Frontend (Angular) lives at `frontend/` — once that exists, also lint/test there (see CLAUDE.md).
+
 ## 0. Detect mode
 Run `git status --porcelain` to determine which diff to target:
 

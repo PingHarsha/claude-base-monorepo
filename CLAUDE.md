@@ -1,8 +1,17 @@
 # example-desk-problem
 
-Spring Boot 3.4 / Java 21 / Maven scaffold. No Maven wrapper — use system `mvn`.
+Monorepo: Spring Boot 3.4 / Java 21 / Maven backend at `backend/`, Angular 19 frontend at `frontend/` (scaffolded in phase 3). No Maven wrapper — use system `mvn`.
 
-## Build & test
+## Repository layout
+```
+backend/    — Maven project root (pom.xml lives here, all mvn commands run from here)
+frontend/   — Angular 19 application (npm + ng commands run from here once scaffolded)
+.github/    — GitHub Actions workflows
+.claude/    — slash commands, hooks, project settings (settings.local.json gitignored)
+PLAN.md, CLAUDE.md, README.md
+```
+
+## Build & test (backend, from `backend/`)
 - Unit tests: `mvn test`
 - Unit tests + coverage check: `mvn verify` (JaCoCo enforces 80% line coverage at bundle level; `Application.class` is excluded)
 - Integration tests: `mvn test -P integration-tests`
@@ -11,10 +20,13 @@ Spring Boot 3.4 / Java 21 / Maven scaffold. No Maven wrapper — use system `mvn
 - Build: `mvn package`
 - Run: `mvn spring-boot:run`
 
-Coverage report after `mvn test` is at `target/site/jacoco/index.html` (or `jacoco.csv` for parsing).
+Coverage report after `mvn test` is at `backend/target/site/jacoco/index.html` (or `jacoco.csv` for parsing).
 
-Source layout: `src/main/java/com/example/deskproblem/`, tests mirror under `src/test/java/...`.
-Integration tests live in `src/test/java/com/example/deskproblem/integration/` and are tagged `@Tag("integration")`. They use `@SpringBootTest(webEnvironment=RANDOM_PORT)` + `TestRestTemplate` to hit endpoints over real HTTP. The `integration` tag is excluded from default `mvn test` runs (Surefire `<excludedGroups>` config in pom.xml) and is the sole group included by the `integration-tests` Maven profile.
+Source layout: `backend/src/main/java/com/example/deskproblem/`, tests mirror under `backend/src/test/java/...`.
+Integration tests live in `backend/src/test/java/com/example/deskproblem/integration/` and are tagged `@Tag("integration")`. They use `@SpringBootTest(webEnvironment=RANDOM_PORT)` + `TestRestTemplate` to hit endpoints over real HTTP. The `integration` tag is excluded from default `mvn test` runs (Surefire `<excludedGroups>` config in pom.xml) and is the sole group included by the `integration-tests` Maven profile.
+
+## Build & test (frontend, from `frontend/`)
+_Placeholder — scaffold lands in phase 3, tooling wiring in phase 4. Will use `npm`/`ng` commands (Prettier for formatting, `ng lint` for quality, `ng test` for unit tests, `ng build` for production builds)._
 
 ## Code style
 

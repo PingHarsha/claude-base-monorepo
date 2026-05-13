@@ -19,7 +19,9 @@ jobs:
           cache: maven
 
       - name: Lint (Spotless)
+        working-directory: backend
         run: mvn -B spotless:check
 
       - name: Tests + coverage threshold
+        working-directory: backend
         run: mvn -B verify

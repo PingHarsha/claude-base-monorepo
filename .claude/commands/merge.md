@@ -4,6 +4,8 @@ description: Pre-merge gate. Runs integration tests on the current feature branc
 
 You are running the merge-to-develop gate. This is the explicit approval moment: integration tests run, the user sees the results, the user says "approve", and only then does the merge happen.
 
+**Backend path.** `mvn` invocations below run from `backend/`. Frontend lives at `frontend/`.
+
 ## 0. Preflight
 Stop on any failure here — surface the issue and let the user resolve it before re-running.
 

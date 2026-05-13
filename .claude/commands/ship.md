@@ -4,6 +4,8 @@ description: Update PLAN.md, propose a commit message, pause for approval, then 
 
 You are running the project's commit pipeline. Assumes `/verify` has already run cleanly — if the user hasn't run it recently, remind them and ask whether to proceed anyway.
 
+**Backend path.** `mvn` invocations below run from `backend/`. Frontend lives at `frontend/`.
+
 ## 1. Branch check
 If currently on `main` or `develop`, ask the user whether to create a feature branch (`feature/<short-kebab>`) before committing. Do not commit to either branch silently — both are integration branches.
 

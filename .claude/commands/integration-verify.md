@@ -4,6 +4,8 @@ description: Run the integration test suite against the current committed branch
 
 You are running the integration verification gate. It boots the full Spring context and exercises endpoints over real HTTP. This does not modify code — it's a pass/fail gate.
 
+**Backend path.** `mvn` invocations below run from `backend/`.
+
 This command is the underlying integration-test runner. `/merge` invokes equivalent logic as part of the pre-merge gate. Use this standalone when you want to verify integration tests on any committed branch (e.g., on `develop` before invoking `/promote`, or on a feature branch ad-hoc).
 
 ## 0. Preflight

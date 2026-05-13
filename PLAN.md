@@ -4,7 +4,7 @@
 > Updated by `/ship` and by hand. Newest entries at the top of each section.
 
 ## Current focus
-Adding GitHub Actions CI to enforce the workflow at the platform level: PR checks (Spotless + `mvn verify` for tests/coverage) on PRs to `develop` or `main`, and integration tests on push to `main`.
+Phase 1 of multi-stack expansion: restructure to a monorepo (`backend/`, `frontend/`). Phase 2 adds Postgres + Flyway; phase 3 scaffolds Angular 19; phase 4 wires the workflow commands and CI to handle both stacks symmetrically.
 
 ## Decisions
 _Append-only log of meaningful technical decisions and the reasoning behind them._

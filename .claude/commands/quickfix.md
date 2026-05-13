@@ -4,6 +4,8 @@ description: Lightweight commit-and-merge for trivial changes (typos, doc tweaks
 
 You are running the quickfix pipeline. This bypasses the full workflow for trivial changes that don't warrant `/verify` + `/merge`. Use sparingly — when in doubt, use the full pipeline.
 
+**Backend path.** `mvn` invocations below run from `backend/`. Frontend lives at `frontend/`.
+
 **Qualifies as quickfix:**
 - Typo fixes
 - Doc tweaks (`README.md`, `CLAUDE.md`, `PLAN.md`, comments)

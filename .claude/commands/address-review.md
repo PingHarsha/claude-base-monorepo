@@ -4,6 +4,8 @@ description: Fetch a PR's review feedback, present it for selection, branch off 
 
 You are running the address-review pipeline. The user has a PR with review feedback (typically from `/ultrareview` but could be from a human reviewer) and wants to systematically work through it. This command does **not** commit — it applies edits to a fresh branch; the user then runs `/verify` → `/ship` → `/merge` to close the loop.
 
+**Backend path.** `mvn` invocations below run from `backend/`. Frontend lives at `frontend/`.
+
 ## 0. Preflight
 Stop on any failure here and let the user resolve before re-running.
 
